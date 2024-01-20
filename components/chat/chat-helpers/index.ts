@@ -196,7 +196,8 @@ export const handleHostedChat = async (
   setIsGenerating: React.Dispatch<React.SetStateAction<boolean>>,
   setFirstTokenReceived: React.Dispatch<React.SetStateAction<boolean>>,
   setChatMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>,
-  setToolInUse: React.Dispatch<React.SetStateAction<"none" | "retrieval">>
+  setToolInUse: React.Dispatch<React.SetStateAction<"none" | "retrieval">>,
+  currentChatId: any
 ) => {
   const provider =
     modelData.provider === "openai" && profile.use_azure_openai
@@ -219,7 +220,8 @@ export const handleHostedChat = async (
     `/api/chat/${provider}`,
     {
       chatSettings: payload.chatSettings,
-      messages: formattedMessages
+      messages: formattedMessages,
+      currentChatId: currentChatId // Django a besoin de la conversation_key
     },
     true,
     newAbortController,

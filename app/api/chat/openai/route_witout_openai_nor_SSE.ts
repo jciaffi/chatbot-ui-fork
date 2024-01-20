@@ -54,9 +54,9 @@ export async function POST(request: Request) {
     // cf django code pour savoir comment est codé le SSE stream : c'est moi qui l'aie codé.
     const modifiedStream = new ReadableStream({
       async start(controller) {
-        const reader = response!.body!.getReader()
+        const reader = response.body.getReader()
         const decoder = new TextDecoder("utf-8")
-        let accumulator: String = ""
+        let accumulator = ""
 
         while (true) {
           let { done, value } = await reader.read()

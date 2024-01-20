@@ -159,6 +159,35 @@ export const useChatHandler = () => {
         chatFileItems: chatFileItems
       }
 
+      // Comlis : nous avons besoin de currentChat.id avant de contacter Django.
+      // Dans le code original, ça se trouvait après.
+
+      if (!currentChat) {
+        currentChat = await handleCreateChat(
+          chatSettings!,
+          profile!,
+          selectedWorkspace!,
+          messageContent,
+          selectedAssistant!,
+          newMessageFiles,
+          setSelectedChat,
+          setChats,
+          setChatFiles
+        )
+      } else {
+        const updatedChat = await updateChat(currentChat.id, {
+          updated_at: new Date().toISOString()
+        })
+
+        setChats(prevChats => {
+          const updatedChats = prevChats.map(prevChat =>
+            prevChat.id === updatedChat.id ? updatedChat : prevChat
+          )
+
+          return updatedChats
+        })
+      }
+
       let generatedText = ""
 
       if (modelData!.provider === "ollama") {
@@ -187,34 +216,9 @@ export const useChatHandler = () => {
           setIsGenerating,
           setFirstTokenReceived,
           setChatMessages,
-          setToolInUse
+          setToolInUse,
+          currentChat!.id // Django a besoin de la conversation_key
         )
-      }
-
-      if (!currentChat) {
-        currentChat = await handleCreateChat(
-          chatSettings!,
-          profile!,
-          selectedWorkspace!,
-          messageContent,
-          selectedAssistant!,
-          newMessageFiles,
-          setSelectedChat,
-          setChats,
-          setChatFiles
-        )
-      } else {
-        const updatedChat = await updateChat(currentChat.id, {
-          updated_at: new Date().toISOString()
-        })
-
-        setChats(prevChats => {
-          const updatedChats = prevChats.map(prevChat =>
-            prevChat.id === updatedChat.id ? updatedChat : prevChat
-          )
-
-          return updatedChats
-        })
       }
 
       await handleCreateMessages(
