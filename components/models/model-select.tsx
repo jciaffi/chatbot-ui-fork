@@ -50,8 +50,15 @@ export const ModelSelect: FC<ModelSelectProps> = ({
 
   useEffect(() => {
     const checkModelLock = async () => {
+      const isUsingAzure = profile?.use_azure_openai
+
       if (SELECTED_MODEL && profile) {
-        const locked = await isModelLocked(SELECTED_MODEL.provider, profile)
+        const locked = await isModelLocked(
+          SELECTED_MODEL.provider === "openai" && isUsingAzure
+            ? "azure"
+            : SELECTED_MODEL.provider,
+          profile
+        )
         setIsLocked(locked)
       }
     }
@@ -86,10 +93,11 @@ export const ModelSelect: FC<ModelSelectProps> = ({
     model => model.modelId === selectedModelId
   )
 
-  if (!SELECTED_MODEL) return null
   if (!profile) return null
 
   const usingLocalModels = availableLocalModels.length > 0
+
+  console.log("test")
 
   return (
     <DropdownMenu
@@ -113,7 +121,7 @@ export const ModelSelect: FC<ModelSelectProps> = ({
               <WithTooltip
                 display={
                   <div>
-                    Save {SELECTED_MODEL.provider} API key in profile settings
+                    Save {SELECTED_MODEL?.provider} API key in profile settings
                     to unlock.
                   </div>
                 }
@@ -121,14 +129,14 @@ export const ModelSelect: FC<ModelSelectProps> = ({
               />
             ) : (
               <ModelIcon
-                modelId={SELECTED_MODEL.modelId as LLMID}
+                modelId={SELECTED_MODEL?.modelId as LLMID}
                 width={26}
                 height={26}
               />
             )}
 
             <div className="ml-2 flex items-center">
-              {SELECTED_MODEL.modelName}
+              {SELECTED_MODEL?.modelName}
             </div>
           </div>
 

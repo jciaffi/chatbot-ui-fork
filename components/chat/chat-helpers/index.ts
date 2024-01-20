@@ -151,7 +151,7 @@ export const handleLocalChat = async (
   setIsGenerating: React.Dispatch<React.SetStateAction<boolean>>,
   setFirstTokenReceived: React.Dispatch<React.SetStateAction<boolean>>,
   setChatMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>,
-  setToolInUse: React.Dispatch<React.SetStateAction<"none" | "retrieval">>
+  setToolInUse: React.Dispatch<React.SetStateAction<string>>
 ) => {
   const formattedMessages = await buildFinalMessages(payload, profile, [])
 
@@ -196,7 +196,7 @@ export const handleHostedChat = async (
   setIsGenerating: React.Dispatch<React.SetStateAction<boolean>>,
   setFirstTokenReceived: React.Dispatch<React.SetStateAction<boolean>>,
   setChatMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>,
-  setToolInUse: React.Dispatch<React.SetStateAction<"none" | "retrieval">>,
+  setToolInUse: React.Dispatch<React.SetStateAction<string>>,
   currentChatId: any
 ) => {
   const provider =
@@ -221,6 +221,7 @@ export const handleHostedChat = async (
     {
       chatSettings: payload.chatSettings,
       messages: formattedMessages,
+      tools: [],
       currentChatId: currentChatId // Django a besoin de la conversation_key
     },
     true,
@@ -281,7 +282,7 @@ export const processResponse = async (
   controller: AbortController,
   setFirstTokenReceived: React.Dispatch<React.SetStateAction<boolean>>,
   setChatMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>,
-  setToolInUse: React.Dispatch<React.SetStateAction<"none" | "retrieval">>
+  setToolInUse: React.Dispatch<React.SetStateAction<string>>
 ) => {
   let fullText = ""
   let contentToAdd = ""

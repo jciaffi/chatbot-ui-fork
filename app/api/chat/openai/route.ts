@@ -18,6 +18,8 @@ export async function POST(request: Request) {
     currentChatId: string // Django a besoin de la conversation_key
   }
 
+  console.log("openai messages", messages, "\n\n\n")
+
   try {
     const profile = await getServerProfile()
 
