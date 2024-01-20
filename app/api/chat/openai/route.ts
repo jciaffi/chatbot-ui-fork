@@ -90,7 +90,7 @@ export async function POST(request: Request) {
 
     return new Response(modifiedStream)
   } catch (error: any) {
-    const errorMessage = error.error?.message || "An unexpected error occurred"
+    const errorMessage = error.error?.message || "Il y a eu un problème..."
     const errorCode = error.status || 500
     console.log(error)
     return new Response(JSON.stringify({ message: errorMessage }), {
