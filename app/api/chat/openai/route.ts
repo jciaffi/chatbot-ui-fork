@@ -70,7 +70,7 @@ export async function POST(request: Request) {
 
           // Split on \n\n
           const lines = accumulator.split("\n\n")
-          accumulator = lines.pop() // Keep the last partial line for the next chunk
+          accumulator = lines.pop() || "" // Keep the last partial line for the next chunk
 
           // Process each message
           lines.forEach(line => {

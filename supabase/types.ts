@@ -34,52 +34,6 @@ export interface Database {
   }
   public: {
     Tables: {
-      assistant_collections: {
-        Row: {
-          assistant_id: string
-          collection_id: string
-          created_at: string
-          updated_at: string | null
-          user_id: string
-        }
-        Insert: {
-          assistant_id: string
-          collection_id: string
-          created_at?: string
-          updated_at?: string | null
-          user_id: string
-        }
-        Update: {
-          assistant_id?: string
-          collection_id?: string
-          created_at?: string
-          updated_at?: string | null
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "assistant_collections_assistant_id_fkey"
-            columns: ["assistant_id"]
-            isOneToOne: false
-            referencedRelation: "assistants"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "assistant_collections_collection_id_fkey"
-            columns: ["collection_id"]
-            isOneToOne: false
-            referencedRelation: "collections"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "assistant_collections_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
       assistant_files: {
         Row: {
           assistant_id: string
@@ -992,7 +946,6 @@ export interface Database {
           azure_openai_45_turbo_id: string | null
           azure_openai_45_vision_id: string | null
           azure_openai_api_key: string | null
-          azure_openai_embeddings_id: string | null
           azure_openai_endpoint: string | null
           bio: string
           created_at: string
@@ -1019,7 +972,6 @@ export interface Database {
           azure_openai_45_turbo_id?: string | null
           azure_openai_45_vision_id?: string | null
           azure_openai_api_key?: string | null
-          azure_openai_embeddings_id?: string | null
           azure_openai_endpoint?: string | null
           bio: string
           created_at?: string
@@ -1046,7 +998,6 @@ export interface Database {
           azure_openai_45_turbo_id?: string | null
           azure_openai_45_vision_id?: string | null
           azure_openai_api_key?: string | null
-          azure_openai_embeddings_id?: string | null
           azure_openai_endpoint?: string | null
           bio?: string
           created_at?: string
