@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     }
     const clientID = process.env.COMLIS_PHARMNATURE_CLIENT_ID
     const url = `${process.env.COMLIS_DJANGO_URL}/${clientID}/gpt/`
-
+    console.log(url)
     const response = await fetch(url, {
       cache: "no-store",
       method: "POST",
