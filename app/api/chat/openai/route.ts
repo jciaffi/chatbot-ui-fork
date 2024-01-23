@@ -43,8 +43,8 @@ export async function POST(request: Request) {
       body: JSON.stringify(payload)
     })
 
-    console.log(`Response status: ${response.status}`)
-    console.log("Response headers:", response.headers)
+    // console.log(`Response status: ${response.status}`)
+    // console.log("Response headers:", response.headers)
 
     if (!response.ok) {
       throw new Error(
@@ -92,11 +92,14 @@ export async function POST(request: Request) {
 
     return new Response(modifiedStream)
   } catch (error: any) {
-    const errorMessage = error.error?.message || "Il y a eu un problème..."
-    const errorCode = error.status || 500
+    const res = {
+      message: "Il y a eu un problème...",
+      errorMessage: error?.message,
+      errorStack: error.error
+    }
     console.log(error)
-    return new Response(JSON.stringify({ message: errorMessage }), {
-      status: errorCode
+    return new Response(JSON.stringify(res), {
+      status: error.status || 500
     })
   }
 }
