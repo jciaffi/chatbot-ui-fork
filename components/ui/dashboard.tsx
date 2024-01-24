@@ -7,7 +7,7 @@ import { Tabs } from "@/components/ui/tabs"
 import useHotkey from "@/lib/hooks/use-hotkey"
 import { cn } from "@/lib/utils"
 import { ContentType } from "@/types"
-import { IconChevronCompactRight } from "@tabler/icons-react"
+import { IconChevronRight } from "@tabler/icons-react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { FC, useState } from "react"
 import { useSelectFileHandler } from "../chat/chat-hooks/use-select-file-handler"
@@ -73,7 +73,7 @@ export const Dashboard: FC<DashboardProps> = ({ children }) => {
 
       <Button
         className={cn(
-          "absolute left-[4px] top-[50%] z-10 size-[32px] cursor-pointer"
+          "absolute left-[4px] top-2.5 z-10 size-[32px] cursor-pointer"
         )}
         style={{
           marginLeft: showSidebar ? `${SIDEBAR_WIDTH}px` : "0px",
@@ -83,7 +83,7 @@ export const Dashboard: FC<DashboardProps> = ({ children }) => {
         size="icon"
         onClick={handleToggleSidebar}
       >
-        <IconChevronCompactRight size={24} />
+        <IconChevronRight size={24} />
       </Button>
 
       <div
