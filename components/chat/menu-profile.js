@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase/browser-client"
 import { ThemeSwitcher } from "@/components/utility/theme-switcher"
-// fin qq imports en plus
+
 
 
 export const MenuProfile = ({}) => {
