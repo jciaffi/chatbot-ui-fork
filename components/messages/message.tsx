@@ -179,7 +179,7 @@ export const Message: FC<MessageProps> = ({
                   )
                 ) : (
                   <WithTooltip
-                    display={<div>{MODEL_DATA.modelName}</div>}
+                    display={<div>Pharm Nature</div>}
                     trigger={
                       <ModelIcon
                         modelId={message.model as LLMID}
@@ -204,7 +204,7 @@ export const Message: FC<MessageProps> = ({
                 {message.role === "assistant"
                   ? selectedAssistant
                     ? selectedAssistant?.name
-                    : MODEL_DATA?.modelName
+                    : "Pharm Nature"
                   : profile?.display_name ?? profile?.username}
               </div>
             </div>
