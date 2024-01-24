@@ -23,8 +23,8 @@ export const SidebarContent: FC<SidebarContentProps> = ({
   )
 
   return (
-    // Subtract 50px for the height of the workspace settings
-    <div className="flex max-h-[calc(100%-50px)] grow flex-col">
+    // Subtract 50px for the height of the workspace settings << non car pas de workspace
+    <div className="flex max-h-[calc(100%)] grow flex-col">
       <div className="mt-2 flex items-center">
         <SidebarCreateButtons
           contentType={contentType}
