@@ -155,14 +155,15 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
           <ChatCommandInput />
         </div>
 
+        {/* On ne veut pas ajouter de fichier
         <>
           <IconCirclePlus
             className="absolute bottom-[12px] left-3 cursor-pointer p-1 hover:opacity-50"
             size={32}
             onClick={() => fileInputRef.current?.click()}
-          />
+          /> 
 
-          {/* Hidden input to select files from device */}
+           Hidden input to select files from device
           <Input
             ref={fileInputRef}
             className="hidden"
@@ -173,14 +174,12 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
             }}
             accept={filesToAccept}
           />
-        </>
+        </> */}
 
         <TextareaAutosize
           textareaRef={chatInputRef}
-          className="ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring text-md flex w-full resize-none rounded-md border-none bg-transparent px-14 py-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-          placeholder={t(
-            `Ask anything. Type "/" for prompts, "@" for files, and "#" for tools.`
-          )}
+          className="ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring text-md flex w-full resize-none rounded-md border-none bg-transparent px-3 py-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+          placeholder={t(`Posez votre question`)}
           onValueChange={handleInputChange}
           value={userInput}
           minRows={1}
