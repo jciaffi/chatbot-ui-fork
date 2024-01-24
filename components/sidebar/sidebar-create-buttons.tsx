@@ -39,7 +39,7 @@ export const SidebarCreateButtons: FC<SidebarCreateButtonsProps> = ({
     const createdFolder = await createFolder({
       user_id: profile.user_id,
       workspace_id: selectedWorkspace.id,
-      name: "New Folder",
+      name: "Nouveau Dossier",
       description: "",
       type: contentType
     })
@@ -92,13 +92,13 @@ export const SidebarCreateButtons: FC<SidebarCreateButtonsProps> = ({
     <div className="flex w-full space-x-2">
       <Button className="flex h-[36px] grow" onClick={getCreateFunction()}>
         <IconPlus className="mr-1" size={20} />
-        New{" "}
-        {contentType.charAt(0).toUpperCase() +
-          contentType.slice(1, contentType.length - 1)}
+        Nouvelle Conversation
+        {/* {contentType.charAt(0).toUpperCase() +
+          contentType.slice(1, contentType.length - 1)} */}
       </Button>
 
       {hasData && (
-        <Button className="h-[36px] w-[36px] p-1" onClick={handleCreateFolder}>
+        <Button className="size-[36px] p-1" onClick={handleCreateFolder}>
           <IconFolderPlus size={20} />
         </Button>
       )}

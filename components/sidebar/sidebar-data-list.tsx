@@ -89,7 +89,7 @@ export const SidebarDataList: FC<SidebarDataListProps> = ({
 
   const getSortedData = (
     data: any,
-    dateCategory: "Today" | "Yesterday" | "Previous Week" | "Older"
+    dateCategory: "Aujourd'hui" | "Hier" | "Semaine dernière" | "Antérieur"
   ) => {
     const now = new Date()
     const todayStart = new Date(now.setHours(0, 0, 0, 0))
@@ -104,13 +104,13 @@ export const SidebarDataList: FC<SidebarDataListProps> = ({
       .filter((item: any) => {
         const itemDate = new Date(item.updated_at || item.created_at)
         switch (dateCategory) {
-          case "Today":
+          case "Aujourd'hui":
             return itemDate >= todayStart
-          case "Yesterday":
+          case "Hier":
             return itemDate >= yesterdayStart && itemDate < todayStart
-          case "Previous Week":
+          case "Semaine dernière":
             return itemDate >= oneWeekAgoStart && itemDate < yesterdayStart
-          case "Older":
+          case "Antérieur":
             return itemDate < oneWeekAgoStart
           default:
             return true
@@ -254,15 +254,15 @@ export const SidebarDataList: FC<SidebarDataListProps> = ({
 
             {contentType === "chats" ? (
               <>
-                {["Today", "Yesterday", "Previous Week", "Older"].map(
+                {["Aujourd'hui", "Hier", "Semaine dernière", "Antérieur"].map(
                   dateCategory => {
                     const sortedData = getSortedData(
                       dataWithoutFolders,
                       dateCategory as
-                        | "Today"
-                        | "Yesterday"
-                        | "Previous Week"
-                        | "Older"
+                        | "Aujourd'hui"
+                        | "Hier"
+                        | "Semaine dernière"
+                        | "Antérieur"
                     )
                     return (
                       sortedData.length > 0 && (
