@@ -1,4 +1,11 @@
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from "../ui/dropdown-menu"
 import { IconLogout, IconUser} from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
@@ -19,13 +26,13 @@ export const MenuProfile = ({}) => {
 
   return (
     <>
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger>
-          <IconUser/>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content>
-          <DropdownMenu.Item><ThemeSwitcher /></DropdownMenu.Item>
-          <DropdownMenu.Item>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <IconUser className='cursor-pointer'/>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem><ThemeSwitcher /></DropdownMenuItem>
+          <DropdownMenuItem>
             <Button
                 tabIndex={-1}
                 className="text-xs"
@@ -35,9 +42,9 @@ export const MenuProfile = ({}) => {
               <IconLogout className="mr-1" size={20} />
               Logout
             </Button>
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Root>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </>
   )
 }

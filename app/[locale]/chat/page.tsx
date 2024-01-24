@@ -45,9 +45,10 @@ export default function ChatPage() {
             <ChatInput />
           </div>
 
+          {/* On cache le gros point d'interrogation
           <div className="absolute bottom-2 right-2 hidden md:block lg:bottom-4 lg:right-4">
             <ChatHelp />
-          </div>
+          </div> */}
         </div>
       ) : (
         <ChatUI />
