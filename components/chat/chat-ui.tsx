@@ -206,7 +206,8 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
       </div>
 
       <div className="absolute right-4 top-1 flex h-[40px] items-center space-x-2">
-        <ChatSecondaryButtons />
+        {/* On n'en a pas besoin
+        <ChatSecondaryButtons /> */}
         <MenuProfile />
       </div>
 

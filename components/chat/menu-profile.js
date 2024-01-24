@@ -28,7 +28,7 @@ export const MenuProfile = ({}) => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <IconUser className='cursor-pointer'/>
+          <IconUser className='cursor-pointer' size='2em' />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem><ThemeSwitcher /></DropdownMenuItem>
