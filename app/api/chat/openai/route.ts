@@ -29,6 +29,7 @@ export async function POST(request: Request) {
       email: profile.username,
       // code_marketing:  '',
       question: messages.slice(-1)[0].content,
+      nb_messages: messages.length - 1, // utile si user a édité un message antérieur. On ne compte pas le message système
       request_type: "question"
       // extraction_prompt_id: '', // ne sert qu'en mode admin pour forcer l'usage d'un certain extract prompt
       // // admin: '1', // en cas d'absence de ce paramètre, le mode admin est désactivé
@@ -52,45 +53,48 @@ export async function POST(request: Request) {
       )
     }
 
+    // transmet la réponses telle quelle
+    return new Response(response.body)
+
     // Create a transform stream to modify the chunks
     // cf django code pour savoir comment est codé le SSE stream : c'est moi qui l'aie codé.
-    const modifiedStream = new ReadableStream({
-      async start(controller) {
-        const reader = response!.body!.getReader()
-        const decoder = new TextDecoder("utf-8")
-        let accumulator: String = ""
+    // const modifiedStream = new ReadableStream({
+    //   async start(controller) {
+    //     const reader = response!.body!.getReader()
+    //     const decoder = new TextDecoder("utf-8")
+    //     let accumulator: String = ""
 
-        while (true) {
-          let { done, value } = await reader.read()
-          if (done) break
+    //     while (true) {
+    //       let { done, value } = await reader.read()
+    //       if (done) break
 
-          // Convert Uint8Array to string and accumulate
-          let chunk = decoder.decode(value, { stream: true })
-          accumulator += chunk
+    //       // Convert Uint8Array to string and accumulate
+    //       let chunk = decoder.decode(value, { stream: true })
+    //       accumulator += chunk
 
-          // Split on \n\n
-          const lines = accumulator.split("\n\n")
-          accumulator = lines.pop() || "" // Keep the last partial line for the next chunk
+    //       // Split on \n\n
+    //       const lines = accumulator.split("\n\n")
+    //       accumulator = lines.pop() || "" // Keep the last partial line for the next chunk
 
-          // Process each message
-          lines.forEach(line => {
-            if (line.match(/event: stop\ndata: stop/)) {
-              done = true
-            }
-            if (!done) {
-              let match = line.match(/data: (.*)/)
-              let extractedText = match ? match[1] : ""
-              controller.enqueue(new TextEncoder().encode(extractedText))
-            }
-          })
-        }
+    //       // Process each message
+    //       lines.forEach(line => {
+    //         if (line.match(/event: stop\ndata: stop/)) {
+    //           done = true
+    //         }
+    //         if (!done) {
+    //           let match = line.match(/data: (.*)/)
+    //           let extractedText = match ? match[1] : ""
+    //           extractedText = atob(extractedText) // text is base 64 encoded
+    //           controller.enqueue(new TextEncoder().encode(extractedText))
+    //         }
+    //       })
+    //     }
 
-        controller.close()
-        reader.releaseLock()
-      }
-    })
-
-    return new Response(modifiedStream)
+    //     controller.close()
+    //     reader.releaseLock()
+    //   }
+    // })
+    // return new Response(modifiedStream)
   } catch (error: any) {
     const res = {
       message: "Il y a eu un problème...",
