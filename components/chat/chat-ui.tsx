@@ -195,7 +195,9 @@ export const ChatUI: FC<ChatUIProps> = ({}) => {
 
   return (
     <div className="relative flex h-full flex-col items-center">
-      <div className="absolute left-4 top-2.5 flex justify-center">
+      <div className="absolute left-10 top-2.5 flex justify-center">
+        {" "}
+        {/*Attention à la flèche qui permet de masquer sidebar*/}
         <ChatScrollButtons
           isAtTop={isAtTop}
           isAtBottom={isAtBottom}
