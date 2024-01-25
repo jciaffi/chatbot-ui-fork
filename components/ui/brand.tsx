@@ -24,8 +24,8 @@ export const Brand: FC<BrandProps> = ({ theme = "dark" }) => {
       <div className="text-4xl font-bold tracking-wide">Comlis Companion</div> */}
       <Image
         src="/logo-pharm-nature-micronutrition-2021.svg"
-        width={500}
-        height={500}
+        width={300}
+        height={100}
         alt="PharmNature"
       />
     </Link>
