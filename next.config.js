@@ -49,12 +49,8 @@ module.exports = withBundleAnalyzer({
         source: '/',
         has: [
           {
-            type: 'header',
-            key: 'Host',
-            // the page value will not be available in the
-            // destination since value is provided and doesn't
-            // use a named capture group e.g. (?<page>home)
-            value: 'chatbot.pharmnaturemicronutrition.fr/',
+            type: 'host',
+            value: 'chatbot.pharmnaturemicronutrition.fr',
           }],
         destination: '/fr/pharmnature/login',
         permanent: true,
