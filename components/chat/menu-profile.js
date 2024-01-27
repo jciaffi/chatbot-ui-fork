@@ -12,14 +12,19 @@ import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase/browser-client"
 import { ThemeSwitcher } from "@/components/utility/theme-switcher"
 
-
+import { ChatbotUIContext } from "@/context/context"
+import { getComlisClient } from "@/lib/comlis"
+import { useContext } from "react"
 
 export const MenuProfile = ({}) => {
 
+  const { profile } = useContext(ChatbotUIContext)
+  
   const router = useRouter()
   const handleSignOut = async () => {
       await supabase.auth.signOut()
-      router.push("/login")
+      const comlisClient = getComlisClient(profile)
+      router.push(`/${comlisClient.slugURL}/login`)
       router.refresh()
       return
   }

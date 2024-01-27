@@ -35,10 +35,23 @@ module.exports = withBundleAnalyzer({
 
   async redirects() {
     return [
-      // Basic redirect
+      {
+        source: '/pharmnature',
+        destination: '/fr/pharmnature/login',
+        permanent: true,
+      },
       {
         source: '/',
-        destination: '/chat',
+        has: [
+          {
+            type: 'header',
+            key: 'Host',
+            // the page value will not be available in the
+            // destination since value is provided and doesn't
+            // use a named capture group e.g. (?<page>home)
+            value: 'companion.comlis.io',
+          }],
+        destination: '/fr/pharmnature/login',
         permanent: true,
       },
     ]

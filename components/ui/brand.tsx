@@ -14,10 +14,10 @@ interface BrandProps {
   theme?: "dark" | "light"
 }
 
-export const Brand: FC<BrandProps> = ({ theme = "dark" }) => {
+export const Brand = ({ theme = "dark", clientName }) => {
   // ajouté
   const { profile } = useContext(ChatbotUIContext)
-  const comlisClient = getComlisClient(profile)
+  const comlisClient = getComlisClient(profile, clientName)
 
   return (
     <Link
