@@ -5,15 +5,24 @@ import { FC } from "react"
 import { ChatbotUISVG } from "../icons/chatbotui-svg"
 import Image from "next/image"
 
+// ajouté
+import { ChatbotUIContext } from "@/context/context"
+import { getComlisClient } from "@/lib/comlis"
+import { useContext } from "react"
+
 interface BrandProps {
   theme?: "dark" | "light"
 }
 
 export const Brand: FC<BrandProps> = ({ theme = "dark" }) => {
+  // ajouté
+  const { profile } = useContext(ChatbotUIContext)
+  const comlisClient = getComlisClient(profile)
+
   return (
     <Link
       className="flex cursor-pointer flex-col items-center hover:opacity-50"
-      href="https://pharmnaturemicronutrition.fr/"
+      href={comlisClient.url}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -23,7 +32,7 @@ export const Brand: FC<BrandProps> = ({ theme = "dark" }) => {
 
       <div className="text-4xl font-bold tracking-wide">Comlis Companion</div> */}
       <Image
-        src="/logo-pharm-nature-micronutrition-2021.svg"
+        src={comlisClient.brandFileName}
         width={300}
         height={100}
         alt="PharmNature"

@@ -26,6 +26,7 @@ import { TextareaAutosize } from "../ui/textarea-autosize"
 import { WithTooltip } from "../ui/with-tooltip"
 import { MessageActions } from "./message-actions"
 import { MessageMarkdown } from "./message-markdown"
+import { getComlisClient } from "@/lib/comlis"
 
 const ICON_SIZE = 28
 
@@ -127,11 +128,16 @@ export const Message: FC<MessageProps> = ({
     image => image.path === selectedAssistant?.image_path
   )?.base64
 
+  // ajouté
+  const comlisClient = getComlisClient(profile)
+
   return (
     <div
       className={cn(
         "flex w-full justify-center",
-        message.role === "user" ? "" : "bg-secondary"
+        message.role === "assistant"
+          ? ""
+          : `bg-[${comlisClient.chatMessageColor}]`
       )}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -204,7 +210,7 @@ export const Message: FC<MessageProps> = ({
                 {message.role === "assistant"
                   ? selectedAssistant
                     ? selectedAssistant?.name
-                    : "Pharm Nature"
+                    : comlisClient.promptName // pour récupérer le nom du client
                   : profile?.display_name ?? profile?.username}
               </div>
             </div>
