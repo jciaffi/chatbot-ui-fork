@@ -36,6 +36,11 @@ module.exports = withBundleAnalyzer({
   async redirects() {
     return [
       {
+        source: '/',
+        destination: '/fr/chat',
+        permanent: true,
+      },
+      {
         source: '/pharmnature',
         destination: '/fr/pharmnature/login',
         permanent: true,
