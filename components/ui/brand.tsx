@@ -34,8 +34,8 @@ export const Brand: FC<BrandProps> = ({ theme = "dark" }) => {
       <Image
         src={comlisClient.brandFileName}
         alt={comlisClient.name}
-        width={150}
-        height={150}
+        width={250}
+        height={250}
       />
     </Link>
   )
