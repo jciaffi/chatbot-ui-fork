@@ -49,7 +49,7 @@ module.exports = withBundleAnalyzer({
             // the page value will not be available in the
             // destination since value is provided and doesn't
             // use a named capture group e.g. (?<page>home)
-            value: 'companion.comlis.io',
+            value: 'chatbot.pharmnaturemicronutrition.fr/',
           }],
         destination: '/fr/pharmnature/login',
         permanent: true,
