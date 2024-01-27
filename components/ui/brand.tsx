@@ -33,9 +33,9 @@ export const Brand: FC<BrandProps> = ({ theme = "dark" }) => {
       <div className="text-4xl font-bold tracking-wide">Comlis Companion</div> */}
       <Image
         src={comlisClient.brandFileName}
-        width={300}
-        height={100}
-        alt="PharmNature"
+        alt={comlisClient.name}
+        width={150}
+        height={150}
       />
     </Link>
   )
