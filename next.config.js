@@ -32,4 +32,15 @@ module.exports = withBundleAnalyzer({
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+
+  async redirects() {
+    return [
+      // Basic redirect
+      {
+        source: '/',
+        destination: '/chat',
+        permanent: true,
+      },
+    ]
+  }
 })
