@@ -37,21 +37,21 @@ module.exports = withBundleAnalyzer({
     return [
       {
         source: '/',
-        destination: '/fr/chat',
-        permanent: true,
-      },
-      {
-        source: '/pharmnature',
-        destination: '/fr/pharmnature/login',
-        permanent: true,
-      },
-      {
-        source: '/',
         has: [
           {
             type: 'host',
             value: 'chatbot.pharmnaturemicronutrition.fr',
           }],
+        destination: '/fr/pharmnature/login',
+        permanent: true,
+      },
+      {
+        source: '/',
+        destination: '/fr/chat',
+        permanent: true,
+      },
+      {
+        source: '/pharmnature',
         destination: '/fr/pharmnature/login',
         permanent: true,
       },
