@@ -125,6 +125,7 @@ export default async function Autologin({
           name="email"
           value={email}
           required
+          readOnly
         />
 
         <Label className="text-md" htmlFor="password">
@@ -136,6 +137,7 @@ export default async function Autologin({
           name="password"
           placeholder="••••••••"
           value={password}
+          readOnly
         />
 
         <Button className="mb-2 rounded-md bg-blue-700 px-4 py-2 text-white">

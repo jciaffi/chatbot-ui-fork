@@ -45,7 +45,7 @@ export const MenuProfile = ({}) => {
                 onClick={handleSignOut}
                 >
               <IconLogout className="mr-1" size={20} />
-              Logout
+              Deconnexion
             </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>

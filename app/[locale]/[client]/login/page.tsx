@@ -52,7 +52,7 @@ export default async function Login({
     })
 
     if (error) {
-      return redirect(`/login?message=${error.message}`)
+      return redirect(`/${params.client}/login?message=${error.message}`)
     }
 
     return redirect("/chat")
