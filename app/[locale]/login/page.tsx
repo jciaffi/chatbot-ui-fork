@@ -1,3 +1,6 @@
+///////////// PAS UTILISE /////////////////
+// Normalement le user est redirigé vers une page /[client]/login
+
 import { Brand } from "@/components/ui/brand"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"

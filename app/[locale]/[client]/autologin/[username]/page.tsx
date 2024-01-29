@@ -129,7 +129,7 @@ export default async function Autologin({
         />
 
         <Label className="text-md" htmlFor="password">
-          Password
+          Mot de Passe
         </Label>
         <Input
           className="mb-6 rounded-md border bg-inherit px-4 py-2"
@@ -141,7 +141,7 @@ export default async function Autologin({
         />
 
         <Button className="mb-2 rounded-md bg-blue-700 px-4 py-2 text-white">
-          Login
+          Connexion
         </Button>
 
         {/* <Button

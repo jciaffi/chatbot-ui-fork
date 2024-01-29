@@ -19,7 +19,7 @@ export default function ChatLayout({ children }: ChatLayoutProps) {
       const session = (await supabase.auth.getSession()).data.session
 
       if (!session) {
-        router.push("/login")
+        router.push("/fr/comlis/login")
       } else {
         setLoading(false)
       }
