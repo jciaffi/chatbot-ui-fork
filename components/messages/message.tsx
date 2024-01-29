@@ -133,12 +133,11 @@ export const Message: FC<MessageProps> = ({
 
   return (
     <div
-      className={cn(
-        "flex w-full justify-center",
-        message.role === "assistant"
-          ? ""
-          : `bg-[${comlisClient.chatMessageColor}]`
-      )}
+      className={cn("flex w-full justify-center")}
+      style={{
+        "background-color":
+          message.role === "assistant" ? "" : comlisClient.chatMessageColor
+      }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       onKeyDown={handleKeyDown}
