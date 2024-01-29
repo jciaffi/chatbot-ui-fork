@@ -7,6 +7,7 @@ import { OpenAIStream, StreamingTextResponse } from "ai"
 import { ServerRuntime } from "next"
 import OpenAI from "openai"
 import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completions.mjs"
+import { getComlisClient } from "@/lib/comlis"
 
 export const runtime: ServerRuntime = "edge"
 
@@ -22,6 +23,7 @@ export async function POST(request: Request) {
 
   try {
     const profile = await getServerProfile()
+    const comlisClient = getComlisClient(profile)
 
     const payload = {
       env: "test", // pour choisir l'environnement test ou prod du client
@@ -34,7 +36,8 @@ export async function POST(request: Request) {
       // extraction_prompt_id: '', // ne sert qu'en mode admin pour forcer l'usage d'un certain extract prompt
       // // admin: '1', // en cas d'absence de ce paramètre, le mode admin est désactivé
     }
-    const clientID = process.env.COMLIS_PHARMNATURE_CLIENT_ID
+    const clientID =
+      process.env[`COMLIS_${comlisClient.slugURL.toUpperCase()}_CLIENT_ID`]
     const url = `${process.env.COMLIS_DJANGO_URL}/${clientID}/gpt/`
     console.log(url)
     const response = await fetch(url, {
