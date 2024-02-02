@@ -122,6 +122,7 @@ export default async function Autologin({
         </Label>
         <Input
           className="mb-3 rounded-md border bg-inherit px-4 py-2"
+          type="password"
           name="email"
           value={email}
           required
