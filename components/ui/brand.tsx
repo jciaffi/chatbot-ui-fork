@@ -20,23 +20,31 @@ export const Brand = ({ theme = "dark", clientName }) => {
   const comlisClient = getComlisClient(profile, clientName)
 
   return (
-    <Link
-      className="flex cursor-pointer flex-col items-center hover:opacity-50"
-      href={comlisClient.url}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {/* <div className="mb-2">
-        <ChatbotUISVG theme={theme === "dark" ? "dark" : "light"} scale={0.3} />
-      </div>
+    <>
+      <a
+        className="flex cursor-pointer flex-col items-center hover:opacity-50"
+        href={comlisClient.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {/* <div className="mb-2">
+          <ChatbotUISVG theme={theme === "dark" ? "dark" : "light"} scale={0.3} />
+        </div>
 
-      <div className="text-4xl font-bold tracking-wide">Comlis Companion</div> */}
-      <Image
-        src={comlisClient.brandFileName}
-        alt={comlisClient.name}
-        width={250}
-        height={250}
-      />
-    </Link>
+        <div className="text-4xl font-bold tracking-wide">Comlis Companion</div> */}
+        <Image
+          src={comlisClient.brandFileName}
+          alt={comlisClient.name}
+          width={250}
+          height={250}
+        />
+      </a>
+      <a
+        className="talic flex cursor-pointer flex-col items-center text-xs hover:opacity-50"
+        href="https://comlis.io/"
+      >
+        IA companion by Comlis
+      </a>
+    </>
   )
 }
