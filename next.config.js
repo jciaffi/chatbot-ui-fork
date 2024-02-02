@@ -40,7 +40,7 @@ module.exports = withBundleAnalyzer({
         has: [
           {
             type: 'host',
-            value: 'chatbot.pharmnaturemicronutrition.fr',
+            value: 'companion.pharmnaturemicronutrition.fr',
           }],
         destination: '/fr/pharmnature/login',
         permanent: true,
