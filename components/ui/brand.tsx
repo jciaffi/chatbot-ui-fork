@@ -32,12 +32,14 @@ export const Brand = ({ theme = "dark", clientName }) => {
         </div>
 
         <div className="text-4xl font-bold tracking-wide">Comlis Companion</div> */}
-      <Image
-        src={comlisClient.brandFileName}
-        alt={comlisClient.name}
-        width={250}
-        height={250}
-      />
+      <div className="flex flex-col items-center">
+        <Image
+          src={comlisClient.brandFileName}
+          alt={comlisClient.name}
+          width={250}
+          height={250}
+        />
+      </div>
       {/* </a> */}
       <a
         className="talic flex cursor-pointer flex-col items-center text-xs hover:opacity-50"
