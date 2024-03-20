@@ -10,6 +10,7 @@ import { Inter } from "next/font/google"
 import { cookies } from "next/headers"
 import { ReactNode } from "react"
 import "./globals.css"
+import { DjangoState } from "@/context/djangoProfile"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -60,7 +61,14 @@ export default async function RootLayout({
           >
             <Toaster richColors position="top-center" duration={2000} />
             <div className="bg-background text-foreground flex h-screen flex-col items-center">
-              {session ? <GlobalState>{children}</GlobalState> : children}
+              {session ? (
+                <GlobalState>
+                  <DjangoState>{children}</DjangoState>
+                </GlobalState>
+              ) : (
+                children
+              )}
+              {/* {session ? <GlobalState>{children}</GlobalState> : children} <<<<<<<<<< before COMLIS modif */}
             </div>
           </TranslationsProvider>
         </Providers>

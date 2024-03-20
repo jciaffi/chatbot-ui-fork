@@ -26,7 +26,7 @@ import { TextareaAutosize } from "../ui/textarea-autosize"
 import { WithTooltip } from "../ui/with-tooltip"
 import { MessageActions } from "./message-actions"
 import { MessageMarkdown } from "./message-markdown"
-import { getComlisClient } from "@/lib/comlis"
+import { DjangoContext } from "@/context/djangoProfile" // COMLIS
 
 const ICON_SIZE = 28
 
@@ -59,6 +59,7 @@ export const Message: FC<MessageProps> = ({
     chatMessages,
     selectedAssistant,
     chatImages,
+    chatSettings,
     assistantImages,
     toolInUse,
     files
@@ -128,15 +129,16 @@ export const Message: FC<MessageProps> = ({
     image => image.path === selectedAssistant?.image_path
   )?.base64
 
-  // ajouté
-  const comlisClient = getComlisClient(profile)
+  // Comlis
+  const { djangoProfile, getComlisClient } = useContext(DjangoContext)
+  const comlisClient = getComlisClient(chatSettings)
 
   return (
     <div
       className={cn("flex w-full justify-center")}
       style={{
         "background-color":
-          message.role === "assistant" ? "" : comlisClient.chatMessageColor
+          message.role === "assistant" ? "" : comlisClient?.chatMessageColor
       }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -184,7 +186,7 @@ export const Message: FC<MessageProps> = ({
                   )
                 ) : (
                   <WithTooltip
-                    display={<div>Pharm Nature</div>}
+                    display={<div>Comlis</div>}
                     trigger={
                       <ModelIcon
                         modelId={message.model as LLMID}
@@ -209,7 +211,7 @@ export const Message: FC<MessageProps> = ({
                 {message.role === "assistant"
                   ? selectedAssistant
                     ? selectedAssistant?.name
-                    : comlisClient.promptName // pour récupérer le nom du client
+                    : comlisClient?.promptName || profile?.anthropic_api_key // Comlis : for legacy conversations
                   : profile?.display_name ?? profile?.username}
               </div>
             </div>

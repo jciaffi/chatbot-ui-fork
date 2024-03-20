@@ -6,7 +6,7 @@ import { IconHome, IconSettings } from "@tabler/icons-react"
 import { FC, useContext, useRef, useState } from "react"
 import { toast } from "sonner"
 import { Button } from "../ui/button"
-import { ChatSettingsForm } from "../ui/chat-settings-form"
+import { ComlisChatSettingsForm } from "../ui/comlis-chat-settings-form"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { LimitDisplay } from "../ui/limit-display"
@@ -164,35 +164,40 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
             )}
           </SheetHeader>
 
+          {/* comlis : on cache
           <Tabs defaultValue="main">
             <TabsList className="mt-4 grid w-full grid-cols-2">
               <TabsTrigger value="main">Main</TabsTrigger>
               <TabsTrigger value="defaults">Defaults</TabsTrigger>
             </TabsList>
 
-            <TabsContent className="mt-4 space-y-4" value="main">
-              <>
-                <div className="space-y-1">
-                  <Label>Name</Label>
+            <TabsContent className="mt-4 space-y-4" value="main">*/}
+          <>
+            <div className="space-y-1">
+              <Label>Name</Label>
 
-                  <Input
-                    placeholder="Name..."
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                  />
-                </div>
+              <Input
+                placeholder="Name..."
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+            </div>
 
-                <div className="space-y-1">
-                  <Label>Description</Label>
+            <div className="space-y-1">
+              <Label>Description</Label>
 
-                  <Input
-                    placeholder="Description... (optional)"
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                  />
-                </div>
-              </>
-
+              <Input
+                placeholder="Description... (optional)"
+                value={description}
+                onChange={e => setDescription(e.target.value)}
+              />
+            </div>
+            <ComlisChatSettingsForm
+              chatSettings={defaultChatSettings as any}
+              onChangeChatSettings={setDefaultChatSettings}
+            />
+          </>
+          {/* comlis : on cache
               <div className="space-y-1">
                 <Label>
                   How would you like the AI to respond in this workspace?
@@ -209,8 +214,8 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
                 <LimitDisplay
                   used={instructions.length}
                   limit={WORKSPACE_INSTRUCTIONS_MAX}
-                />
-              </div>
+                /> 
+              </div> 
             </TabsContent>
 
             <TabsContent className="mt-5" value="defaults">
@@ -218,12 +223,12 @@ export const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({}) => {
                 These are the settings your workspace begins with when selected.
               </div>
 
-              <ChatSettingsForm
+              <ComlisChatSettingsForm
                 chatSettings={defaultChatSettings as any}
                 onChangeChatSettings={setDefaultChatSettings}
               />
             </TabsContent>
-          </Tabs>
+          </Tabs>*/}
         </div>
 
         <div className="mt-6 flex justify-between">

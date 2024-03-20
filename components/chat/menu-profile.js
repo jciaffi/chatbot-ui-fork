@@ -15,15 +15,19 @@ import { ThemeSwitcher } from "@/components/utility/theme-switcher"
 import { ChatbotUIContext } from "@/context/context"
 import { getComlisClient } from "@/lib/comlis"
 import { useContext } from "react"
+import { DjangoContext } from "@/context/djangoProfile" // COMLIS
 
 export const MenuProfile = ({}) => {
 
-  const { profile } = useContext(ChatbotUIContext)
+  const { profile, chatSettings } = useContext(ChatbotUIContext)
+
+  // Comlis
+  const {djangoProfile, getComlisClient} = useContext(DjangoContext)
+  const comlisClient = getComlisClient(chatSettings)
   
   const router = useRouter()
   const handleSignOut = async () => {
       await supabase.auth.signOut()
-      const comlisClient = getComlisClient(profile)
       router.push(`/${comlisClient.slugURL}/login`)
       router.refresh()
       return

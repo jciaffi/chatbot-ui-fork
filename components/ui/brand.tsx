@@ -1,13 +1,14 @@
 "use client"
 
 import Link from "next/link"
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import { ChatbotUISVG } from "../icons/chatbotui-svg"
 import Image from "next/image"
 
 // ajouté
 import { ChatbotUIContext } from "@/context/context"
-import { getComlisClient } from "@/lib/comlis"
+import { DjangoContext } from "@/context/djangoProfile" // COMLIS
+import { clients } from "@/lib/comlis" // comlis
 import { useContext } from "react"
 
 interface BrandProps {
@@ -15,9 +16,17 @@ interface BrandProps {
 }
 
 export const Brand = ({ theme = "dark", clientName }) => {
-  // ajouté
-  const { profile } = useContext(ChatbotUIContext)
-  const comlisClient = getComlisClient(profile, clientName)
+  // Comlis
+  // TODO : should get this in django
+  const { profile, chatSettings } = useContext(ChatbotUIContext)
+  const { djangoProfile, getComlisClient } = useContext(DjangoContext)
+  let comlisClient
+  if (clientName) {
+    comlisClient = clients[clientName]
+  } else {
+    // user is logged in. clientName is only used for login page
+    comlisClient = getComlisClient(chatSettings)
+  }
 
   return (
     <>
@@ -34,8 +43,8 @@ export const Brand = ({ theme = "dark", clientName }) => {
         <div className="text-4xl font-bold tracking-wide">Comlis Companion</div> */}
       <div className="flex flex-col items-center">
         <Image
-          src={comlisClient.brandFileName}
-          alt={comlisClient.name}
+          src={"/" + comlisClient?.brandFileName}
+          alt={comlisClient?.name}
           width={250}
           height={250}
         />
