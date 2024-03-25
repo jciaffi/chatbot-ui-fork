@@ -24,8 +24,9 @@ export async function POST(request: Request) {
   try {
     const profile = await getServerProfile()
 
+    const env = chatSettings.embeddingsProvider
     const payload = {
-      env: "prod", // pour choisir l'environnement test ou prod du client
+      env: env || "prod", // pour choisir l'environnement test ou prod du client
       conversation_key: currentChatId,
       email: profile.username,
       // code_marketing:  '',
@@ -40,9 +41,9 @@ export async function POST(request: Request) {
     if (clientID === 0.5)
       clientID = process.env.NODE_ENV === "development" ? 2 : 2
 
-    const env = chatSettings.embeddingsProvider
-    let url = `${process.env.NEXT_PUBLIC_COMLIS_DJANGO_URL}/${clientID}/gpt/`
-    if (env) url += "?env=" + env
+    const djangoURL =
+      process.env.COMLIS_DJANGO_URL || process.env.NEXT_PUBLIC_COMLIS_DJANGO_URL // usefull for dev env
+    let url = `${djangoURL}/${clientID}/gpt/`
 
     const response = await fetch(url, {
       cache: "no-store",
