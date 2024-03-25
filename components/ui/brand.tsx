@@ -28,6 +28,8 @@ export const Brand = ({ theme = "dark", clientName }) => {
     comlisClient = getComlisClient(chatSettings)
   }
 
+  const brandFilename = comlisClient?.brandFileName
+
   return (
     <>
       {/* <a
@@ -42,12 +44,14 @@ export const Brand = ({ theme = "dark", clientName }) => {
 
         <div className="text-4xl font-bold tracking-wide">Comlis Companion</div> */}
       <div className="flex flex-col items-center">
-        <Image
-          src={"/" + comlisClient?.brandFileName}
-          alt={comlisClient?.name}
-          width={250}
-          height={250}
-        />
+        {brandFilename && (
+          <Image
+            src={"/" + brandFilename}
+            alt={comlisClient?.name}
+            width={250}
+            height={250}
+          />
+        )}
       </div>
       {/* </a> */}
       <a
