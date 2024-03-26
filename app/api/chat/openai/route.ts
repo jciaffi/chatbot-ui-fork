@@ -24,9 +24,10 @@ export async function POST(request: Request) {
   try {
     const profile = await getServerProfile()
 
-    const env = chatSettings.embeddingsProvider
+    let env = chatSettings.embeddingsProvider
+    if (!["test", "prod"].includes(env)) env = "prod"
     const payload = {
-      env: env || "prod", // pour choisir l'environnement test ou prod du client
+      env: env, // pour choisir l'environnement test ou prod du client
       conversation_key: currentChatId,
       email: profile.username,
       // code_marketing:  '',
