@@ -16,7 +16,7 @@ import { MenuProfile } from "@/components/chat/menu-profile"
 export default function ChatPage() {
   useHotkey("o", () => handleNewChat())
 
-  const { chatMessages } = useContext(ChatbotUIContext)
+  const { chatMessages, chats } = useContext(ChatbotUIContext)
 
   const { handleNewChat } = useChatHandler()
 
@@ -28,6 +28,16 @@ export default function ChatPage() {
         <div className="relative flex h-full flex-col items-center justify-center">
           <div className="top-50% left-50% -translate-x-50% -translate-y-50% absolute mb-20">
             <Brand theme={theme === "dark" ? "dark" : "light"} />
+            {/* { !(chats && chats.length) && (
+              <>
+                <p>
+                  Bienvenue sur le chatbot Pharm Nature !
+                </p>
+                <p>
+                  Pour commencer écrivez votre question ci-après dans la langue de votre choix.
+                </p>
+              </>
+            )} */}
           </div>
 
           <div className="absolute left-2 top-2">{/* <QuickSettings /> */}</div>
@@ -41,7 +51,7 @@ export default function ChatPage() {
 
           <div className="flex grow flex-col items-center justify-center" />
 
-          <div className="w-[300px] pb-8 sm:w-[400px] md:w-[500px] lg:w-[660px] xl:w-[800px]">
+          <div className="w-[300px] pb-20 sm:w-[400px] md:w-[500px] lg:w-[660px] xl:w-[800px]">
             <ChatInput />
           </div>
 
