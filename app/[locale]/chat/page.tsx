@@ -28,16 +28,19 @@ export default function ChatPage() {
         <div className="relative flex h-full flex-col items-center justify-center">
           <div className="top-50% left-50% -translate-x-50% -translate-y-50% absolute mb-20">
             <Brand theme={theme === "dark" ? "dark" : "light"} />
-            {/* { !(chats && chats.length) && (
-              <>
-                <p>
-                  Bienvenue sur le chatbot Pharm Nature !
-                </p>
-                <p>
-                  Pour commencer écrivez votre question ci-après dans la langue de votre choix.
-                </p>
-              </>
-            )} */}
+            {/* { !(chats && chats.length) && ( */}
+            <>
+              <div className="mt-10 flex grow flex-col items-center justify-center">
+                <div className=" text-centertext-muted-foreground p-8 text-lg italic">
+                  <p>Bienvenue sur le chatbot Pharm Nature !</p>
+                  <p>
+                    Pour commencer écrivez votre question ci-après dans la
+                    langue de votre choix.
+                  </p>
+                </div>
+              </div>
+            </>
+            {/* )} */}
           </div>
 
           <div className="absolute left-2 top-2">{/* <QuickSettings /> */}</div>
